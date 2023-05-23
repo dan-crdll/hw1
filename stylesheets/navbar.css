@@ -1,0 +1,59 @@
+
+body {
+    margin: 0 10%;
+    font-family: var(--content-font);
+}
+
+#title {
+    font-size: 3rem;
+    font-family: var(--title-font);
+}
+
+header {
+    padding: 15px;
+    color: var(--blue-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.1rem;
+}
+
+#logout_btn {
+    padding: 10px;
+    background: var(--blue-color);
+    border: var(--blue-color) solid 2px;
+    border-radius: 20px;
+    font-weight: bold;
+    color: white;
+    font-size: 1.1rem;
+    text-decoration: none;
+}
+
+#logout_btn:hover {
+    background-color: #0d0a30;
+}
+
+#logo {
+    height: 2.5rem;
+    margin-right: 10px;
+}
+
+#title_link {
+    display: flex;
+    align-items: center;
+}
+
+header a {
+    text-decoration: none;
+    color: var(--blue-color);
+}
+
+.tabs {
+    padding: 10px;
+    margin-right: 10px;
+}
+
+.tabs:hover {
+    border-radius: 25px;
+    background-color: var(--hover-color);
+}

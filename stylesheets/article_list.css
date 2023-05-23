@@ -1,0 +1,63 @@
+.page,
+#articles {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.article {
+    width: 24%;
+    height: 350px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px 5px 5px 10px;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
+
+.article_img {
+    height: 50%;
+    width: 100%;
+    background-color: gainsboro;
+    border-radius: 10px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.article_title {
+    font-family: var(--title-font);
+    font-size: 2rem;
+    text-align: center;
+}
+
+.likes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    padding: 5px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.likes:hover {
+    background-color: var(--hover-color);
+}
+
+.likes img {
+    height: 1rem;
+    margin-right: 5px;
+}
+
+.non_found {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: 1.5rem;
+}

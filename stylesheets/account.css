@@ -1,0 +1,54 @@
+#follow img {
+    height: 1rem;
+}
+
+#follow {
+    padding: 5px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#follow div {
+    margin: 5px;
+}
+
+#follow:hover {
+    background-color: var(--hover-color);
+}
+
+#info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.image_article {
+    width: 100%;
+    height: 70%;
+    border-radius: 10px;
+    background-color: gainsboro;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.article_title {
+    min-height: 30%;
+    width: 100%;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--blue-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+}
+
+a {
+    text-decoration: none;
+}
