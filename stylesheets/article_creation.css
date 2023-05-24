@@ -53,3 +53,9 @@ section {
     font-size: 3rem;
     font-family: var(--title-font);
 }
+
+@media (max-width: 800px) {
+    #article_img {
+        height: 30%;
+    }
+}

@@ -62,7 +62,7 @@ function onSearch(event) {
 
 function onTweets(tweets) {
   if (tweets["num"] === 0) {
-    document.querySelector("#article-container").innerHTML =
+    document.querySelector("#article-list").innerHTML =
       "Non è stato trovato alcun risultato";
   }
   for (let t of tweets) {
@@ -84,12 +84,13 @@ function onTweets(tweets) {
     article.appendChild(image);
     article.appendChild(title);
 
-    document.querySelector("#article-container").appendChild(article);
+    document.querySelector("#article-list").appendChild(article);
   }
 }
 
 function onPopular(json) {
   document.querySelector("#most_popular").innerHTML = "";
+  document.querySelector("#article-list").innerHTML = "";
   let num = 3;
   if (json.length < 3) {
     num = json.length;
@@ -121,7 +122,8 @@ function onPopular(json) {
 }
 
 function onAlike(json) {
-  document.querySelector("#article-container").innerHTML = "";
+  document.querySelector("#most_popular").innerHTML = "";
+  document.querySelector("#article-list").innerHTML = "";
   if (json[0]["num"] === 0) {
     return;
   }
@@ -146,7 +148,7 @@ function onAlike(json) {
     article.appendChild(image);
     article.appendChild(title);
 
-    document.querySelector("#article-container").appendChild(article);
+    document.querySelector("#article-list").appendChild(article);
   }
   return;
 }

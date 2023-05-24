@@ -96,3 +96,9 @@ a {
     display: inline;
     height: 1rem;
 }
+
+@media (max-width: 800px) {
+    #prof_img {
+        height: 30%;
+    }
+}

@@ -22,7 +22,7 @@ mysqli_close($conn);
 <html>
 
 <head>
-    <title>Scrivi un articolo</title>
+    <title>Esplora gli articoli</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,7 +30,7 @@ mysqli_close($conn);
 
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
 
-    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="./stylesheets/navbar.css">
     <link rel="stylesheet" href="./stylesheets/main.css">
@@ -39,6 +39,7 @@ mysqli_close($conn);
     <link rel="stylesheet" href="./stylesheets/profile.css">
 
     <script src="./scripts/article_creation.js" defer></script>
+    <script src="./scripts/sandwich_btn.js" defer></script>
 </head>
 
 <body>
@@ -76,7 +77,39 @@ mysqli_close($conn);
                 Logout
             </a>
         </div>
+
+        <div id="sandwich_btn">
+            <i class="fi fi-rr-settings-sliders"></i>
+        </div>
+
     </header>
+
+    <div id="sandwich">
+        <a href="home.php" class="tabs">
+            <i class="fi fi-rr-house-blank"></i>
+            Home
+        </a>
+
+        <a href="article_list.php" class="tabs">
+            <i class="fi fi-rr-plane"></i>
+            Articoli
+        </a>
+
+        <a href="article_writing.php" class="tabs">
+            <i class="fi fi-rr-pen-nib"></i>
+            Scrivi un articolo
+        </a>
+
+        <a href="profile.php" class="tabs">
+            <i class="fi fi-rr-user"></i>
+            <?php echo $_SESSION["username"] ?>
+        </a>
+
+        <a id="logout_btn" href="logout.php">
+            Logout
+        </a>
+    </div>
+
 
     <section class="page">
         <?php

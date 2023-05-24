@@ -43,7 +43,7 @@ header {
     align-items: center;
 }
 
-header a {
+a {
     text-decoration: none;
     color: var(--blue-color);
 }
@@ -56,4 +56,37 @@ header a {
 .tabs:hover {
     border-radius: 25px;
     background-color: var(--hover-color);
+}
+
+#sandwich_btn {
+    display: none;
+}
+
+#sandwich {
+    display: none;
+}
+
+@media (max-width: 800px) {
+    #link-group {
+        display: none;
+    }
+
+    #sandwich_btn {
+        display: block;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    #sandwich_btn i {
+        font-size: 2rem;
+    }
+
+    #sandwich {
+        display: none;
+        flex-direction: column;
+        margin-bottom: 15px;
+    }
+
 }

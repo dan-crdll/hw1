@@ -10,3 +10,9 @@
 .hidden {
     display: none;
 }
+
+@media (max-width: 800px) {
+    :root {
+        font-size: 12px;
+    }
+}
