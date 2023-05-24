@@ -52,3 +52,7 @@
 a {
     text-decoration: none;
 }
+
+.followed {
+    background-color: var(--hover-color);
+}

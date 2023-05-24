@@ -22,8 +22,10 @@ function isFollowed(json) {
 
   if (alreadyFollowed) {
     follow_icon.src = "/hw1/assets/full_following.png";
+    follow_btn.classList.add("followed");
   } else {
     follow_icon.src = "/hw1/assets/following.png";
+    follow_btn.classList.remove("followed");
   }
 }
 
@@ -54,6 +56,7 @@ function follow(event) {
 function onJson(json) {
   if (json[0]["success"]) {
     follow_icon.src = "/hw1/assets/full_following.png";
+    follow_btn.classList.add("followed");
 
     document.querySelector("#num_follow").innerHTML = json[1]["num"];
   }
@@ -62,6 +65,7 @@ function onJson(json) {
 function onRemove(json) {
   if (json[0]["success"]) {
     follow_icon.src = "/hw1/assets/following.png";
+    follow_btn.classList.remove("followed");
 
     document.querySelector("#num_follow").innerHTML = json[1]["num"];
   }
