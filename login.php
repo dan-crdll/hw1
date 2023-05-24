@@ -1,38 +1,38 @@
 <?php
-    include 'auth.php';
-    if (checkAuth()) {
-        header('Location: home.php');
-        exit;
-    }
+include 'auth.php';
+if (checkAuth()) {
+    header('Location: home.php');
+    exit;
+}
 
-    if (!empty($_POST["username"]) && !empty($_POST['password'])) {
-        require_once('db_config.php');
-        $conn = mysqli_connect(
-            $db_config["host"],
-            $db_config["user"],
-            $db_config["password"],
-            $db_config["name"]
-        );
+if (!empty($_POST["username"]) && !empty($_POST['password'])) {
+    require_once('db_config.php');
+    $conn = mysqli_connect(
+        $db_config["host"],
+        $db_config["user"],
+        $db_config["password"],
+        $db_config["name"]
+    );
 
-        $username = mysqli_real_escape_string($conn, $_POST['username']);
-        $query = "SELECT * FROM ACCOUNTS WHERE USERNAME = '" . $username . "'";
-        $res = mysqli_query($conn, $query) or die(mysqli_error($conn));
+    $username = mysqli_real_escape_string($conn, $_POST['username']);
+    $query = "SELECT * FROM ACCOUNTS WHERE USERNAME = '" . $username . "'";
+    $res = mysqli_query($conn, $query) or die(mysqli_error($conn));
 
-        if (mysqli_num_rows($res) > 0) {
-            $entry = mysqli_fetch_assoc($res);
-            if (password_verify($_POST['password'], $entry['PASSWORD'])) {
-                $_SESSION['user_id'] = $entry['ID'];
-                $_SESSION['username'] = $entry['USERNAME'];
-                header('Location: home.php');
-                mysqli_free_result($res);
-                mysqli_close($conn);
-                exit;
-            }
+    if (mysqli_num_rows($res) > 0) {
+        $entry = mysqli_fetch_assoc($res);
+        if (password_verify($_POST['password'], $entry['PASSWORD'])) {
+            $_SESSION['user_id'] = $entry['ID'];
+            $_SESSION['username'] = $entry['USERNAME'];
+            header('Location: home.php');
+            mysqli_free_result($res);
+            mysqli_close($conn);
+            exit;
         }
-        $error = "Username e/o password errati.";
-    } else if (isset($_POST['username']) || isset($_POST['password'])) {
-        $error = 'Inserisci username e password';
     }
+    $error = "Username e/o password errati.";
+} else if (isset($_POST['username']) || isset($_POST['password'])) {
+    $error = 'Inserisci username e password';
+}
 ?>
 
 <html>
@@ -47,6 +47,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Work+Sans:ital,wght@0,100;0,400;0,500;0,600;1,100;1,400;1,500;1,600&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+
+    <script src="./scripts/error_check.js" defer></script>
 </head>
 
 <body>
@@ -61,17 +63,22 @@
                     Bentornato globetrotter!
                 </div>
 
+                <?php
+                if (isset($error)) {
+                    echo '<span class="error">
+                ' . $error . '
+                </span>';
+                }
+                ?>
+
                 <form method="post" name="login_form">
                     <input type="hidden" value="login" name="type">
-                    <label for="username">Username <span class="error hidden" id="lo_user_error">
-
+                    <label for="username">Username <span class="error hidden" id="username_error">
+                            Username non valido
                         </span></label>
                     <input type="text" id="username" name="username">
-                    <label for="password">Password <span class="error hidden" id="lo_password_error">
-                            La password deve avere minimo 8 caratteri,
-                            contenere un numero, un simbolo ed un mix di
-                            lettere maiuscole e minuscole, inoltre non
-                            può essere più lunga di 50 caratteri
+                    <label for="password">Password <span class="error hidden" id="password_error">
+                            Password non valida
                         </span></label>
                     <input type="password" id="password" name="password">
 

@@ -1,19 +1,22 @@
 body {
     margin: 0;
     font-family: var(--content-font);
+    height: 100%;
     overflow-y: hidden;
 }
 
 #container {
-    height: 100vh;
+    height: 100%;
     display: flex;
-
 }
 
 #left_container {
     width: 50%;
     height: 100%;
     background-image: url(../assets/landing_bg.jpg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #right_container {
@@ -82,16 +85,6 @@ a {
 
 .hidden {
     display: none;
-}
-
-.error {
-    color: tomato;
-    font-size: 0.7rem;
-}
-
-.error_input {
-    border: tomato solid 1px;
-    background-color: rgba(255, 99, 71, 0.199);
 }
 
 @media (max-width: 800px) {

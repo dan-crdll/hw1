@@ -11,6 +11,13 @@
     display: none;
 }
 
+.error {
+    padding: 5px;
+    color: crimson;
+    font-weight: bold;
+    font-size: 0.7rem;
+}
+
 @media (max-width: 800px) {
     :root {
         font-size: 12px;

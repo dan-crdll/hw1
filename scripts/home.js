@@ -89,6 +89,7 @@ function onTweets(tweets) {
 }
 
 function onPopular(json) {
+  document.querySelector("#most_popular").style.display = 'flex';
   document.querySelector("#most_popular").innerHTML = "";
   document.querySelector("#article-list").innerHTML = "";
   let num = 3;
@@ -123,6 +124,7 @@ function onPopular(json) {
 
 function onAlike(json) {
   document.querySelector("#most_popular").innerHTML = "";
+  document.querySelector("#most_popular").style.display = 'none';
   document.querySelector("#article-list").innerHTML = "";
   if (json[0]["num"] === 0) {
     return;
