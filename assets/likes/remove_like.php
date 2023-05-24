@@ -17,9 +17,13 @@ if ($res = mysqli_query($conn, $query)) {
     exit;
 }
 
-$query = "SELECT COUNT() AS NUM FROM LIKES WHERE ARTICLE=" . $article . " GROUP BY ARTICLE";
+$query = "SELECT COUNT(*) AS NUM FROM LIKES WHERE ARTICLE=" . $article . " GROUP BY ARTICLE";
 $res = mysqli_query($conn, $query);
 $entry = mysqli_fetch_assoc($res);
-$response[] = ["num" => $entry['NUM']];
+if (mysqli_num_rows($res) > 0) {
+    $response[] = ["num" => $entry['NUM']];
+} else {
+    $response[] = ["num" => 0];
+}
 echo json_encode($response);
 exit;

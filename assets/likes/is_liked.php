@@ -3,6 +3,7 @@
 
     require_once '../../db_config.php';
     $conn = mysqli_connect($db_config['host'], $db_config['user'], $db_config['password'], $db_config['name']) or die(mysqli_error($conn));
+
     $user = mysqli_real_escape_string($conn, $_POST['user']);
     $article = mysqli_real_escape_string($conn, $_POST['article']);
 

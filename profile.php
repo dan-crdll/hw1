@@ -94,7 +94,13 @@ if ($res = mysqli_query($conn, $query)) {
             <?php echo ucfirst($name) . " " . ucfirst($surname) ?>
         </div>
         <div id="username">
-            @<?php echo $_SESSION["username"] ?>
+            @<?php echo $_SESSION["username"] ?> -
+            <?php
+            $query = "SELECT * FROM FOLLOWS WHERE FOLLOWED=" . $_SESSION["user_id"];
+            $res = mysqli_query($conn, $query);
+            echo mysqli_num_rows($res);
+            ?> Follower <?php if (mysqli_num_rows($res) > 1) echo "s"; ?>
+            <img id="follow_ico" src="./assets/full_following.png">
         </div>
     </div>
 
@@ -112,6 +118,27 @@ if ($res = mysqli_query($conn, $query)) {
         <div class="section_title">
             <i class="fi fi-rr-star"></i>
             Mi piace
+        </div>
+
+        <div class="page">
+            <?php
+            $query = "SELECT ARTICLES.ID, IMAGE_URL, TITLE FROM LIKES INNER JOIN ARTICLES ON LIKES.ARTICLE = ARTICLES.ID WHERE USER=" . $_SESSION['user_id'];
+            $res = mysqli_query($conn, $query);
+
+            if (mysqli_num_rows($res) === 0) {
+                echo 'Non hai ancora messo mi piace a nessun articolo';
+            } else {
+                for ($i = 0; $i < mysqli_num_rows($res); $i++) {
+                    $entry = mysqli_fetch_assoc($res);
+                    echo '<a class="article" href=article.php?q=' . $entry["ID"] . '>';
+                    echo '<div class="image_article" style="background-image: url(' . $entry["IMAGE_URL"] . ')"></div>';
+                    echo '<div class="article_title">' . $entry['TITLE'] . '</div>';
+                    echo '</a>';
+                }
+            }
+            mysqli_free_result($res);
+
+            ?>
         </div>
 
         <hr>

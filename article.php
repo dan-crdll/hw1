@@ -1,4 +1,3 @@
-<!-- PAGINA PHP CHE SI OCCUPA DELLA VISUALIZZAZIONE DI UN ARTICOLO SELEZIONATO -->
 <?php
 #TODO CONTROLLI ACCESSI SBAGLIATI
 
@@ -21,11 +20,10 @@ $conn = mysqli_connect(
 $article = mysqli_real_escape_string($conn, $_GET['q']);
 $query = "SELECT * FROM ARTICLES INNER JOIN ACCOUNTS ON AUTHOR=ACCOUNTS.ID WHERE ARTICLES.ID=" . $article;
 
-$res = mysqli_query($conn, $query);
-$entry = mysqli_fetch_assoc($res);
-
-mysqli_free_result($res);
-mysqli_close($conn);
+if ($res = mysqli_query($conn, $query)) {
+    $entry = mysqli_fetch_assoc($res);
+    mysqli_free_result($res);
+}
 ?>
 
 
@@ -46,6 +44,13 @@ mysqli_close($conn);
     <link rel="stylesheet" href="./stylesheets/main.css">
     <link rel="stylesheet" href="./stylesheets/article.css">
     <link rel="stylesheet" href="./stylesheets/footer.css">
+
+    <script>
+        var article = <?php echo $_GET['q']; ?>;
+        var user = <?php echo $_SESSION['user_id']; ?>;
+    </script>
+    <script src="./scripts/likes.js" defer></script>
+    <script src="./scripts/comment.js" defer></script>
 </head>
 
 <body>
@@ -114,13 +119,50 @@ mysqli_close($conn);
             <div id="stats">
                 <div id="likes">
                     <img src="./assets/star.png">
-                    0
+                    <div id="num_like">
+                        <?php
+                        $query = "SELECT * FROM LIKES WHERE ARTICLE=" . $article;
+                        $res = mysqli_query($conn, $query);
+                        echo mysqli_num_rows($res);
+                        ?>
+                    </div>
                 </div>
 
                 <div id="comments">
                     <img src="./assets/comment.png">
-                    0
+                    <div id="num_comment">
+                        <?php
+                        $query = "SELECT * FROM COMMENTS WHERE ARTICLE=" . $article;
+                        $res = mysqli_query($conn, $query);
+                        echo mysqli_num_rows($res);
+                        ?>
+                    </div>
                 </div>
+            </div>
+        </div>
+
+        <div id="comment_section" class="hidden">
+            <form name="comment">
+                <div class="comment">
+                    <div class="author">
+                        <?php echo "@" . $_SESSION['username']; ?>
+                    </div>
+                    <div class="text">
+                        <textarea name="comment_content" cols="30" rows="10"></textarea>
+                    </div>
+                    <div class="date">
+                        <?php echo date("d/m/Y"); ?>
+                    </div>
+                    <input type="hidden" name="date" value="<?php echo date("d/m/Y"); ?>">
+                </div>
+
+                <button type="submit">
+                    Pubblica
+                </button>
+            </form>
+            <hr>
+
+            <div id="comment_list">
             </div>
         </div>
     </section>
@@ -129,5 +171,8 @@ mysqli_close($conn);
         Made by Daniele S. Cardullo - 1000014469
     </footer>
 </body>
+<?php
+mysqli_close($conn);
+?>
 
 </html>

@@ -6,6 +6,7 @@ if (!$userid = checkAuth()) {
 }
 
 $username = $_SESSION['username'];
+
 ?>
 
 <html>
@@ -25,6 +26,9 @@ $username = $_SESSION['username'];
     <link rel="stylesheet" href="./stylesheets/home.css">
     <link rel="stylesheet" href="./stylesheets/navbar.css">
     <link rel="stylesheet" href="./stylesheets/footer.css">
+    <link rel="stylesheet" href="./stylesheets/article_list.css">
+
+    <script src="./scripts/home.js" defer></script>
 </head>
 
 <body>
@@ -64,81 +68,28 @@ $username = $_SESSION['username'];
     </header>
 
     <div id="search_container">
-        <form>
+        <form name="search_form">
             <div id="search_bar">
-                <label for="search">
+                <label for="search_bar">
                     <i class="fi fi-rr-search-location"></i>
                 </label>
-                <input type="text" name="search">
+                <input type="text" name="search_bar">
             </div>
         </form>
     </div>
 
     <section>
         <div id="section-title">
-            <?php
-            if (empty($_GET["search"])) {
-                echo "Lasciati ispirare";
-            } else {
-                echo $_GET["search"];
-            }
-            ?>
+        Lasciati ispirare
         </div>
         <div id="section-subtitle">
-            <?php
-            if (empty($_GET["search"])) {
-                echo "Ultimi tweet dell'account <span class=\"hashtag\">Trip Advisor</span>";
-            } else {
-                echo "Ultimi tweet di viaggi con l'hashtag <span class=\"hashtag\">#"
-                    . preg_replace('/\s+/', '', $_GET["search"])
-                    . "</span> e articoli di altri globetrotters se disponibili";
-            }
-            ?>
+        Ultimi tweet dell'account <span class="hashtag">Trip Advisor</span> e articoli più popolari
         </div>
         <br>
-        <div id="article-container">
-            <?php
-            if (empty($_GET["search"])) {
-                $request = "https://api.twitter.com/2/tweets/search/recent?query=from%3ATripadvisor%20has%3Amedia%20-is%3Aretweet&expansions=attachments.media_keys&media.fields=url";
-            } else {
-                $request = "https://api.twitter.com/2/tweets/search/recent?query=(%23"
-                    . urlencode(preg_replace('/\s+/', '', $_GET["search"]))
-                    . "%20OR%20"
-                    . urlencode(preg_replace('/\s+/', '', $_GET["search"]))
-                    . "%20)%20%23travel%20has%3Amedia%20-is%3Aretweet&expansions=attachments.media_keys&media.fields=url";
-            }
-            $conn = curl_init();
-            curl_setopt($conn, CURLOPT_URL, $request);
-            curl_setopt($conn, CURLOPT_HTTPHEADER, ["Authorization: Bearer " . $twitter_token]);
-            curl_setopt($conn, CURLOPT_RETURNTRANSFER, 1);
-            $res = curl_exec($conn);
-            curl_close($conn);
-            if (!isset(json_decode($res)->includes)) {
-                echo "Nessun risultato...";
-            } else {
-                $tweets = json_decode($res)->data;
-                $media = json_decode($res)->includes->media;
-
-                foreach ($tweets as $tweet) {
-                    echo "<article class=\"tweet\">";
-                    echo "<div class=\"tweet_text\">";
-                    echo $tweet->text;
-                    echo "<img src=";
-                    foreach ($media as $m) {
-                        if (isset($tweet->attachments)) {
-                            if ($m->media_key === $tweet->attachments->media_keys[0]) {
-                                if (isset($m->url)) {
-                                    echo '"' . $m->url . '"';
-                                }
-                            }
-                        }
-                    }
-                    echo " class=\"tweet_image\"\>";
-                    echo "</div>";
-                    echo "</article>";
-                }
-            }
-            ?>
+        <div id="article-container" class="page">
+            <div id="most_popular">
+                
+            </div>
         </div>
     </section>
 

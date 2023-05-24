@@ -13,7 +13,6 @@
     padding: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
     margin: 5px 5px 5px 10px;
     cursor: pointer;
@@ -47,7 +46,7 @@
 }
 
 .likes:hover {
-    background-color: var(--hover-color);
+    background-color: var(--like-color);
 }
 
 .likes img {
@@ -60,4 +59,13 @@
     display: flex;
     justify-content: center;
     font-size: 1.5rem;
+}
+
+.image_article {
+    width: 100%;
+    height: 70%;
+    border-radius: 10px;
+    background-color: gainsboro;
+    background-repeat: no-repeat;
+    background-size: cover;
 }

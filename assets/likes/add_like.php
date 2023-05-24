@@ -17,7 +17,7 @@ if ($res = mysqli_query($conn, $query)) {
     exit;
 }
 
-$query = "SELECT COUNT() AS NUM FROM LIKES WHERE ARTICLE=" . $article . " GROUP BY ARTICLE";
+$query = "SELECT COUNT(*) AS NUM FROM LIKES WHERE ARTICLE=" . $article . " GROUP BY ARTICLE";
 $res = mysqli_query($conn, $query);
 $entry = mysqli_fetch_assoc($res);
 $response[] = ["num" => $entry['NUM']];

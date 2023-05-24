@@ -22,7 +22,7 @@ if (!$user_id = checkAuth()) {
     <link rel="stylesheet" href="./stylesheets/navbar.css">
     <link rel="stylesheet" href="./stylesheets/main.css">
     <link rel="stylesheet" href="./stylesheets/article_creation.css">
-    <link rel="stylesheet" href="/stylesheets/footer.css">
+    <link rel="stylesheet" href="./stylesheets/footer.css">
 
     <script src="./scripts/article_creation.js" defer></script>
 </head>

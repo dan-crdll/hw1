@@ -7,7 +7,7 @@ if (!checkAuth()) {
 
 require_once 'db_config.php';
 $conn = mysqli_connect($db_config['host'], $db_config['user'], $db_config['password'], $db_config['name']);
-$query = 'SELECT * FROM ARTICLES';
+$query = 'SELECT * FROM ARTICLES ORDER BY ID DESC';
 
 if (!$res = mysqli_query($conn, $query)) {
     $present = false;
@@ -36,6 +36,7 @@ mysqli_close($conn);
     <link rel="stylesheet" href="./stylesheets/main.css">
     <link rel="stylesheet" href="./stylesheets/article_list.css">
     <link rel="stylesheet" href="./stylesheets/footer.css">
+    <link rel="stylesheet" href="./stylesheets/profile.css">
 
     <script src="./scripts/article_creation.js" defer></script>
 </head>
@@ -85,14 +86,11 @@ mysqli_close($conn);
                 Non ci sono articoli da mostrare...
             </div>';
         } else {
-            for($i = 0; $i < mysqli_num_rows($res); $i++) {
+            for ($i = mysqli_num_rows($res); $i > 0; $i--) {
                 $entry = mysqli_fetch_assoc($res);
-                echo '<a class="article" href=article.php?q=' . $entry["ID"] .'>';
-                echo '<div class="article_img" style="background-image: url(' . $entry["IMAGE_URL"] . ')"></div>';
+                echo '<a class="article" href=article.php?q=' . $entry["ID"] . '>';
+                echo '<div class="image_article" style="background-image: url(' . $entry["IMAGE_URL"] . ')"></div>';
                 echo '<div class="article_title">' . $entry['TITLE'] . '</div>';
-                echo '<div class="likes">';
-                echo '<img src="./assets/star.png"> like';
-                echo '</div>';
                 echo '</a>';
             }
         }

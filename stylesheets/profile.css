@@ -91,3 +91,8 @@ a {
     padding: calc(10px);
     font-weight: bold;
 }
+
+#follow_ico {
+    display: inline;
+    height: 1rem;
+}

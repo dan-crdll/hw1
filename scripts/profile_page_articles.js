@@ -12,9 +12,13 @@ function onJson(json) {
   const articles = json["articles"];
   let title;
   let img;
-  let article;
   let title_el;
   let image_el;
+
+  if(articles.length === 0) {
+    document.querySelector("#articles").innerHTML = "Non hai ancora pubblicato nulla...";
+    return;
+  }
 
   for (let a of articles) {
     title = a["TITLE"];
