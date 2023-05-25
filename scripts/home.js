@@ -89,16 +89,22 @@ function onTweets(tweets) {
 }
 
 function onPopular(json) {
-  document.querySelector("#most_popular").style.display = 'flex';
   document.querySelector("#most_popular").innerHTML = "";
   document.querySelector("#article-list").innerHTML = "";
   let num = 3;
+
+  if(json[0]['num'] === 0) {
+    return;
+  }
+
+  document.querySelector("#most_popular").style.display = 'flex';
+
   if (json.length < 3) {
     num = json.length;
   }
 
   for (let i = 0; i < num; i++) {
-    let content = json[i]["TITLE"];
+    let content = (json[i]["TITLE"].length > 60 ? json[i]["TITLE"].slice(0, 59) + "..." : json[i]["TITLE"]);
     let photo = json[i]["IMAGE_URL"];
     let id = json[i]["ID"];
 
@@ -131,7 +137,7 @@ function onAlike(json) {
   }
 
   for (let j of json) {
-    let content = j["TITLE"];
+    let content = (j["TITLE"].length > 60 ? j["TITLE"].slice(0, 59) + "..." : j["TITLE"]);
     let photo = j["IMAGE_URL"];
     let id = j["ID"];
 

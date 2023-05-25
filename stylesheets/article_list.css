@@ -102,6 +102,7 @@
         border-radius: 10px;
         background-repeat: no-repeat;
         background-size: cover;
+        background-position: center;
     }
 
     .article_title {

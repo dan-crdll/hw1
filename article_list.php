@@ -8,11 +8,11 @@ if (!checkAuth()) {
 require_once 'db_config.php';
 $conn = mysqli_connect($db_config['host'], $db_config['user'], $db_config['password'], $db_config['name']);
 $query = 'SELECT * FROM ARTICLES ORDER BY ID DESC';
-
-if (!$res = mysqli_query($conn, $query)) {
-    $present = false;
-} else {
+$res = mysqli_query($conn, $query);
+if (mysqli_num_rows($res) > 0) {
     $present = true;
+} else {
+    $present = false;
 }
 
 mysqli_close($conn);
@@ -37,6 +37,7 @@ mysqli_close($conn);
     <link rel="stylesheet" href="./stylesheets/article_list.css">
     <link rel="stylesheet" href="./stylesheets/footer.css">
     <link rel="stylesheet" href="./stylesheets/profile.css">
+    <link rel="stylesheet" href="./stylesheets/list_footer.css">
 
     <script src="./scripts/article_creation.js" defer></script>
     <script src="./scripts/sandwich_btn.js" defer></script>

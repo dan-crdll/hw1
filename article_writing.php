@@ -102,6 +102,11 @@ if (!$user_id = checkAuth()) {
             <div id="article_img"></div>
             <div id="title_sec">
                 <input class="title" type="text" name="article_title" id="article_title" value="Inserisci il titolo">
+
+                <div class="error <?php if(!isset($_GET['err']) || !$_GET['err'] = 1) echo 'hidden'; ?>">
+                    Problema nella creazione dell'articolo, forse ne esiste già uno con lo stesso nome?
+                </div>
+
                 <label for="city_sec">
                     Luogo
                     <input type="text" name="city" id="city_sec">

@@ -78,7 +78,7 @@ section {
 
 #most_popular {
     background-color: var(--like-color);
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;

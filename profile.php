@@ -193,7 +193,7 @@ if ($res = mysqli_query($conn, $query)) {
                     $entry = mysqli_fetch_assoc($res);
                     echo '<a class="article" href=article.php?q=' . $entry["ID"] . '>';
                     echo '<div class="image_article" style="background-image: url(' . $entry["IMAGE_URL"] . ')"></div>';
-                    echo '<div class="article_title">' . $entry['TITLE'] . '</div>';
+                    echo '<div class="article_title">' . (strlen($entry['TITLE']) > 60 ? (substr($entry['TITLE'], 0, 60) . '...') : $entry['TITLE'])  . '</div>';
                     echo '</a>';
                 }
             }

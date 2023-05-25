@@ -5,4 +5,7 @@ footer {
     align-items: center;
     color: var(--blue-color);
     border-top: 1px solid var(--blue-color);
+    bottom: 0;
+    left: 0;
+    width: 100%;
 }

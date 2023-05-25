@@ -15,13 +15,14 @@ function onJson(json) {
   let title_el;
   let image_el;
 
-  if(articles.length === 0) {
-    document.querySelector("#articles").innerHTML = "Non hai ancora pubblicato nulla...";
+  if (articles.length === 0) {
+    document.querySelector("#articles").innerHTML =
+      "Non hai ancora pubblicato nulla...";
     return;
   }
 
   for (let a of articles) {
-    title = a["TITLE"];
+    title = (a["TITLE"].length > 60 ? a["TITLE"].slice(0, 59) + "..." : a["TITLE"]);
     img = a["IMAGE_URL"];
 
     const article = document.createElement("a");
@@ -33,7 +34,7 @@ function onJson(json) {
 
     article.classList.add("article");
     image_el.classList.add("image_article");
-    image_el.style.backgroundImage = 'url(' + img + ')';
+    image_el.style.backgroundImage = "url(" + img + ")";
     console.log(img);
 
     article.appendChild(image_el);
