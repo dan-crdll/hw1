@@ -9,3 +9,12 @@ footer {
     left: 0;
     width: 100%;
 }
+
+footer img {
+    height: 1rem;
+    margin-left: 1rem;
+}
+
+footer a {
+    text-decoration: none;
+}

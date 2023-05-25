@@ -124,7 +124,9 @@ mysqli_close($conn);
                 $entry = mysqli_fetch_assoc($res);
                 echo '<a class="article" href=article.php?q=' . $entry["ID"] . '>';
                 echo '<div class="image_article" style="background-image: url(' . $entry["IMAGE_URL"] . ')"></div>';
-                echo '<div class="article_title">' . $entry['TITLE'] . '</div>';
+                echo '<div class="article_title">' .
+                    (strlen($entry['TITLE']) > 60 ? (substr($entry['TITLE'], 0, 60) . '...') : $entry['TITLE'])
+                    . '</div>';
                 echo '</a>';
             }
         }
@@ -134,7 +136,7 @@ mysqli_close($conn);
     </section>
 
     <footer>
-        Made by Daniele S. Cardullo - 1000014469
+        Made by Daniele S. Cardullo - 1000014469 <a href="https://github.com/dan-crdll"><img src="./assets/github.png"></a>
     </footer>
 </body>
 

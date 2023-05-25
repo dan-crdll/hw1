@@ -87,6 +87,20 @@ section {
     padding-top: 2rem;
 }
 
+button {
+    background: none;
+    border: none;
+    height: 1rem;
+    cursor: pointer;
+}
+
+#hourglass {
+    display: flex;
+    justify-content: center;
+    height: 10%;
+    margin-top: 25px;
+}
+
 @media (max-width: 800px) {
     #search_container {
         width: 100%;
@@ -127,3 +141,4 @@ section {
         margin-bottom: 5px;
     }
 }
+

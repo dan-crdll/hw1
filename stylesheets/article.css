@@ -7,6 +7,19 @@
     background-position: center;
 }
 
+#delete_btn {
+    border: crimson solid 1px;
+    color: crimson;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 1rem;
+}
+
+#delete_btn:hover {
+    background-color: crimson;
+    color: white;
+    font-weight: bold;
+}
 
 #title_sec {
     text-align: center;

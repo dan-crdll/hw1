@@ -229,7 +229,7 @@ if ($res = mysqli_query($conn, $query)) {
     </div>
 
     <footer>
-        Made by Daniele S. Cardullo - 1000014469
+        Made by Daniele S. Cardullo - 1000014469 <a href="https://github.com/dan-crdll"><img src="./assets/github.png"></a>
     </footer>
 </body>
 <?php

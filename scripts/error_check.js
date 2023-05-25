@@ -117,6 +117,14 @@ function checkEmail(event) {
 }
 
 function onSubmit(event) {
+  const errors = document.querySelectorAll(".errorjs");
+
+  errors = document.querySelectorAll(".errorjs");
+  if (errors.length > 0) {
+    event.preventDefault();
+    return;
+  }
+
   if (signup_form) {
     checkEmail();
     checkName();
@@ -125,7 +133,7 @@ function onSubmit(event) {
   checkUsername();
   checkPassword();
 
-  const errors = document.querySelectorAll(".errorjs");
+  errors = document.querySelectorAll(".errorjs");
   if (errors.length > 0) {
     event.preventDefault();
   }

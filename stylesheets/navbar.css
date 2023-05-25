@@ -4,6 +4,12 @@ body {
     font-family: var(--content-font);
 }
 
+#link-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 #title {
     font-size: 3rem;
     font-family: var(--title-font);
@@ -69,6 +75,7 @@ a {
 @media (max-width: 800px) {
     #link-group {
         display: none;
+        flex-wrap: nowrap;
     }
 
     #sandwich_btn {

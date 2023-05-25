@@ -105,7 +105,9 @@ $username = $_SESSION['username'];
         <form name="search_form">
             <div id="search_bar">
                 <label for="search_bar">
-                    <i class="fi fi-rr-search-location"></i>
+                    <button type="submit">
+                        <i class="fi fi-rr-search-location"></i>
+                    </button>
                 </label>
                 <input type="text" name="search_bar">
             </div>
@@ -126,13 +128,17 @@ $username = $_SESSION['username'];
             </div>
 
             <div id="article-list">
-                
+
             </div>
+        </div>
+
+        <div id="hourglass">
+            <img src="./assets/hourglass.gif" class="hidden">
         </div>
     </section>
 
     <footer>
-        Made by Daniele S. Cardullo - 1000014469
+        Made by Daniele S. Cardullo - 1000014469 <a href="https://github.com/dan-crdll"><img src="./assets/github.png"></a>
     </footer>
 </body>
 

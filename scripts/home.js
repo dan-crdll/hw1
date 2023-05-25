@@ -1,12 +1,15 @@
 const search_form = document.forms["search_form"];
 search_form.addEventListener("submit", onSearch);
 
+var hourglass = document.querySelector('#hourglass img');
+
 fetch("/hw1/assets/search_articles/most_popular.php")
   .then((res) => {
     return res.json();
   })
   .then(onPopular)
   .then(() => {
+    hourglass.classList.remove('hidden');
     fetch("/hw1/assets/get_tweets.php")
       .then((res) => {
         return res.json();
@@ -34,6 +37,7 @@ function onSearch(event) {
       })
       .then(onAlike)
       .then(() => {
+        hourglass.classList.remove('hidden');
         fetch("/hw1/assets/get_tweets.php?q=" + q)
           .then((res) => {
             return res.json();
@@ -51,6 +55,7 @@ function onSearch(event) {
       })
       .then(onPopular)
       .then(() => {
+        hourglass.classList.remove('hidden');
         fetch("/hw1/assets/get_tweets.php")
           .then((res) => {
             return res.json();
@@ -86,6 +91,8 @@ function onTweets(tweets) {
 
     document.querySelector("#article-list").appendChild(article);
   }
+
+  hourglass.classList.add('hidden');
 }
 
 function onPopular(json) {

@@ -52,6 +52,7 @@ if ($res = mysqli_query($conn, $query)) {
     <script src="./scripts/likes.js" defer></script>
     <script src="./scripts/comment.js" defer></script>
     <script src="./scripts/sandwich_btn.js" defer></script>
+    <script src="./scripts/delete_article.js" defer></script>
 </head>
 
 <body>
@@ -148,6 +149,14 @@ if ($res = mysqli_query($conn, $query)) {
             ?>
         </div>
 
+        <?php
+        if ($_SESSION['user_id'] === $entry['AUTHOR']) {
+            echo "<a id='delete_btn' href='/hw1/article_list.php'>";
+            echo "Elimina questo articolo";
+            echo "</a>";
+        }
+        ?>
+
         <div id="reaction_sec">
             <div id="stats">
                 <div id="likes">
@@ -201,7 +210,7 @@ if ($res = mysqli_query($conn, $query)) {
     </section>
 
     <footer>
-        Made by Daniele S. Cardullo - 1000014469
+        Made by Daniele S. Cardullo - 1000014469 <a href="https://github.com/dan-crdll"><img src="./assets/github.png"></a>
     </footer>
 </body>
 <?php

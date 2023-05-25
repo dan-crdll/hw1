@@ -4,7 +4,6 @@ var isOpen = false;
 sandwich.addEventListener("click", onOpenMenu);
 
 function onOpenMenu(event) {
-  console.log(isOpen);
   if (isOpen) {
     document.querySelector("#sandwich").style.display = "none";
   } else {
