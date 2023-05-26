@@ -1,6 +1,4 @@
 <?php
-#TODO: SECURITY CHECKS
-
 require_once './api_keys.php';
 $headers = [
     "Authorization: Basic " . base64_encode($api_keys['twitter'] . ':' . $api_secrets['twitter']),

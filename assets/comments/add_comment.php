@@ -1,5 +1,22 @@
 <?php
-#TODO: SECURITY CHECKS
+if (
+    !isset($_POST['content']) || !isset($_POST['article']) || !isset($_POST['user'])
+    || !isset($_POST['date'])
+) {
+    echo "Errore nella richiesta";
+    exit;
+}
+
+require_once '../../auth.php';
+if (!$userid = checkAuth()) {
+    header('Location: login.php');
+    exit;
+}
+
+if ($_POST['user'] !== $userid) {
+    echo "non autorizzato";
+    exit;
+}
 
 require_once '../../db_config.php';
 $conn = mysqli_connect($db_config['host'], $db_config['user'], $db_config['password'], $db_config['name']) or die(mysqli_error($conn));
