@@ -1,7 +1,21 @@
 <?php
 require_once 'auth.php';
+if (!$userid = checkAuth()) {
+    header('Location: login.php');
+    exit;
+}
 
-# TODO: CHECK ACCESSO CORRETTO
+if (!isset($_GET['article'])) {
+    echo "Errore richiesta";
+}
+
+require_once './db_config.php';
+$conn = mysqli_connect($db_config['host'], $db_config['user'], $db_config['password'], $db_config['name']) or die(mysqli_error($conn));
+$article = mysqli_real_escape_string($conn, $_GET['article']);
+
+if ($userid !== $_POST['AUTHOR']) {
+    echo "Non autorizzato";
+}
 
 require_once 'db_config.php';
 $conn = mysqli_connect($db_config['host'], $db_config['user'], $db_config['password'], $db_config['name']) or die(mysqli_error($conn));

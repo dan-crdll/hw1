@@ -52,7 +52,6 @@ if ($res = mysqli_query($conn, $query)) {
     <script src="./scripts/likes.js" defer></script>
     <script src="./scripts/comment.js" defer></script>
     <script src="./scripts/sandwich_btn.js" defer></script>
-    <script src="./scripts/delete_article.js" defer></script>
 </head>
 
 <body>
@@ -151,7 +150,7 @@ if ($res = mysqli_query($conn, $query)) {
 
         <?php
         if ($_SESSION['user_id'] === $entry['AUTHOR']) {
-            echo "<a id='delete_btn' href='/hw1/article_list.php'>";
+            echo "<a id='delete_btn' href='/hw1/assets/search_articles/delete_article.php?article=" . $_GET['q'] . "'>";
             echo "Elimina questo articolo";
             echo "</a>";
         }
