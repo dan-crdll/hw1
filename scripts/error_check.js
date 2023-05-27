@@ -117,15 +117,14 @@ function checkEmail(event) {
 }
 
 function onSubmit(event) {
-  event.preventDefault();
   let errors = document.querySelectorAll(".errorjs");
 
-  if (errors.length > 0) {s
+  if (errors.length > 0) {
     event.preventDefault();
+    console.log('heyhey2')
     return;
   }
 
-  console.log(errors.length);
 
   if (signup_form) {
     checkEmail();
@@ -138,5 +137,7 @@ function onSubmit(event) {
   errors = document.querySelectorAll(".errorjs");
   if (errors.length > 0) {
     event.preventDefault();
+    errors = [];
+    return;
   }
 }
