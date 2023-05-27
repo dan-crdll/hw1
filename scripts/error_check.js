@@ -117,13 +117,15 @@ function checkEmail(event) {
 }
 
 function onSubmit(event) {
-  const errors = document.querySelectorAll(".errorjs");
+  event.preventDefault();
+  let errors = document.querySelectorAll(".errorjs");
 
-  errors = document.querySelectorAll(".errorjs");
-  if (errors.length > 0) {
+  if (errors.length > 0) {s
     event.preventDefault();
     return;
   }
+
+  console.log(errors.length);
 
   if (signup_form) {
     checkEmail();
