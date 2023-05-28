@@ -103,7 +103,7 @@ if (!$user_id = checkAuth()) {
             <div id="title_sec">
                 <input class="title" type="text" name="article_title" id="article_title" value="Inserisci il titolo">
 
-                <div class="error <?php if(!isset($_GET['err']) || !$_GET['err'] = 1) echo 'hidden'; ?>">
+                <div class="error <?php if (!isset($_GET['err']) || !$_GET['err'] = 1) echo 'hidden'; ?>">
                     Problema nella creazione dell'articolo, forse ne esiste già uno con lo stesso nome?
                 </div>
 
@@ -114,7 +114,7 @@ if (!$user_id = checkAuth()) {
             </div>
             <textarea name="article_body" id="article_body"></textarea>
 
-            <button id="save_btn" type="submit">
+            <button id="save_btn" type="submit" class="hidden">
                 Pubblica
             </button>
         </section>

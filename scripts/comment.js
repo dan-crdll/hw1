@@ -1,5 +1,3 @@
-/*TODO: CONTROLLO ERRORI FORM*/
-
 const comment_btn = document.querySelector("#comments");
 var inComment = false;
 
@@ -65,6 +63,9 @@ function onFetchComments(json) {
 function onComment(event) {
   event.preventDefault();
   let content = comment_form["comment_content"].value;
+  if (!content.length) {
+    return;
+  }
   let date = comment_form["date"].value;
   comment_form.reset();
   body = new FormData();
