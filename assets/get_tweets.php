@@ -24,14 +24,19 @@ if (!isset($_GET['q']) || empty($_GET['q'])) {
     $tweets = fetchRequested($token, $_GET['q']);
 }
 
+if ($tweets->meta->result_count === 0) {
+    $response = ["num" => 0];
+    echo json_encode($response);
+    exit;
+}
 $data = $tweets->data;
 $media = $tweets->includes->media;
 
 $response = [];
 
-foreach($data as $t) {
-    foreach($media as $m) {
-        if($m->media_key === $t->attachments->media_keys[0] && $m->type === "photo") {
+foreach ($data as $t) {
+    foreach ($media as $m) {
+        if ($m->media_key === $t->attachments->media_keys[0] && $m->type === "photo") {
             $response[] = ["content" => $t->text, "photo" => $m->url];
         } else {
             continue;
@@ -39,7 +44,7 @@ foreach($data as $t) {
     }
 }
 
-if(empty($response)) {
+if (empty($response)) {
     $response = ["num" => 0];
 }
 
